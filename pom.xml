@@ -100,6 +100,9 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+<!--					lombok wouldn't run without adding this because of mapstruct -->
+<!--					(Setters, getter, etc would not load)-->
+<!--					if other annotation used add here and make sure to add scope as "compile" in dependency-->
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>
