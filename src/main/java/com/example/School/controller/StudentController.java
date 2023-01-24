@@ -41,7 +41,7 @@ public class StudentController {
     }
 
     //only change path when doing something else
-    @PostMapping("/addStudents")//yyy
+    @PostMapping("/addStudents")
     public ResponseEntity<?> newStudent(@RequestBody List<Student> students) { //object array?
         return new ResponseEntity<>(studentService.addStudents(students),HttpStatus.CREATED); //201
     }
