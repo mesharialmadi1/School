@@ -45,7 +45,7 @@ public class StudentController {
     public ResponseEntity<?> newStudent(@RequestBody List<Student> students) { //object array?
         return new ResponseEntity<>(studentService.addStudents(students),HttpStatus.CREATED); //201
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")//git branch test
     public ResponseEntity<?> getStudentById(@PathVariable Long id) {
         return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK); //200
      }
