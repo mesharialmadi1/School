@@ -40,7 +40,7 @@ public class StudentController {
         return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED); //201
     }
 
-    //only change path when doing something else
+    //only change path when doing something els
     @PostMapping("/addStudents")
     public ResponseEntity<?> newStudent(@RequestBody List<Student> students) { //object array?
         return new ResponseEntity<>(studentService.addStudents(students),HttpStatus.CREATED); //201
