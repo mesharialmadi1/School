@@ -52,7 +52,7 @@ public class StudentService{
         Student existingStudent = studentRepository.findById(id).orElse(null);
         if (existingStudent != null) {
             studentRepository.delete(existingStudent);
-            return new DataResponse("Student with id: "+id+" removed successfully.");
+            return new DataResponse("Student with id: " + id + " removed successfully.");
         }
         return new DataResponse("Student with id: " + id + " not found.");
     }
@@ -62,7 +62,7 @@ public class StudentService{
 
     public DataResponse patchStudent(Long id, Student student) {
         Student existStudent = studentRepository.findById(id).orElse(null);
-        String string = "";
+        String message = "";
 //      error 500 if NULL
 //      String existName = existStudent.getName();
 //      String existMajor = existStudent.getMajor();
@@ -76,14 +76,14 @@ public class StudentService{
             String newMajor = student.getMajor();
             if (newName != null) {           //stupid?
                 existStudent.setName(newName);
-                string += "name changed to: " + newName;
-            } else string += "name remains: " + existName;
+                message += "name changed to: " + newName;
+            } else message += "name remains: " + existName;
             if (newMajor != null) {
                 existStudent.setMajor(newMajor);
-                string += "major changed to: " + newMajor;
-            } else string += "major remains: " + existMajor;
+                message += "major changed to: " + newMajor;
+            } else message += "major remains: " + existMajor;
             studentRepository.save(existStudent);
-            return new DataResponse(string);
+            return new DataResponse(message);
         }
         return new DataResponse("id "+id+" not found");
     }
