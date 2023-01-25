@@ -1,7 +1,7 @@
 package com.example.School;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication; //git --rebase test
 
 @SpringBootApplication
 public class SchoolApplication {
