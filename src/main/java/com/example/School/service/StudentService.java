@@ -12,9 +12,6 @@ import java.util.List;
 public class StudentService{
     @Autowired
     StudentRepository studentRepository;
-//    @Autowired
-//    private StudentMapper studentMapper;
-
     public List<Student> getAllStudents(){
         if (studentRepository.count() < 1)
             throw new ApiRequestException("No students exist");
@@ -29,8 +26,12 @@ public class StudentService{
         return new DataResponse("Students added");
     }
 
+    //optional type may return null must useorelse
     public Student getStudentById(Long id) {
-        return studentRepository.findById(id).orElse(null); //optional type may return null must useorelse
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student != null)
+            return student;
+        throw new ApiRequestException("Student with id " + id + " does not exist");
     }
 
     public DataResponse updateStudent(Long id, Student student) {
@@ -41,7 +42,8 @@ public class StudentService{
             existStudent.setName(student.getName());
             existStudent.setMajor(student.getMajor());
             studentRepository.save(existStudent);
-            return new DataResponse("Student id: " + existStudent.getId() + " updated.  current name: " + existStudent.getName() +
+            return new DataResponse("Student with id: " + existStudent.getId() +
+                    " updated.  current name: " + existStudent.getName() +
                     " current major: " + existStudent.getMajor());
         }
 //        return new DataResponse( "Student not found");
@@ -54,10 +56,10 @@ public class StudentService{
             studentRepository.delete(existingStudent);
             return new DataResponse("Student with id: " + id + " removed successfully.");
         }
-        return new DataResponse("Student with id: " + id + " not found.");
+        throw new ApiRequestException("Student with id: " + id + " not found.");
     }
-    public long countStudents(){
-        return studentRepository.count();
+    public DataResponse countStudents(){
+        return new DataResponse("Student count: " + studentRepository.count());
     }
 
     public DataResponse patchStudent(Long id, Student student) {
@@ -85,7 +87,7 @@ public class StudentService{
             studentRepository.save(existStudent);
             return new DataResponse(message);
         }
-        return new DataResponse("id "+id+" not found");
+        throw new ApiRequestException("id "+id+" not found");
     }
 
     public DataResponse deleteAllStudents() {

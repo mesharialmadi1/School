@@ -4,10 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "Students")
+@Entity(name = "Student")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,5 +17,7 @@ public class Student {
     private String name;
 //    @Column(name = "major", nullable = false)
     private String major;
+    @OneToMany(mappedBy = "student")
+    private List<Classroom> classrooms;
 
 }
