@@ -1,4 +1,4 @@
-package com.example.School.Mappers;
+package com.example.School.service.Mappers;
 import com.example.School.Mapstruct.ClassroomDto;
 import com.example.School.model.Classroom;
 import org.mapstruct.Mapper;

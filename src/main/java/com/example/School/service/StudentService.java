@@ -1,32 +1,63 @@
 package com.example.School.service;
 import com.example.School.Exception.ApiRequestException;
-import com.example.School.Mappers.StudentMapper;
-import com.example.School.model.Classroom;
-import com.example.School.model.DataResponse;
-import com.example.School.model.Student;
+import com.example.School.service.Mappers.StudentMapper;
+import com.example.School.model.*;
 import com.example.School.repository.ClassroomRepository;
+import com.example.School.repository.StudentClassroomRepository;
 import com.example.School.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class StudentService{
     @Autowired
     StudentRepository studentRepository;
     @Autowired
     ClassroomRepository classroomRepository;
-
+    @Autowired
+    StudentMapper studentMapper;
+    @Autowired
+    StudentClassroomRepository studentClassroomRepository;
 
     public List<Student> getAllStudents(){
         if (studentRepository.count() < 1)
             throw new ApiRequestException("No students exist");
         return studentRepository.findAll();
     }
-    public DataResponse addStudent(Student student){
+//    public DataResponse addStudent(Student student){
+//        studentRepository.save(student);
+//        return new DataResponse("Student Created ID: " + student.getId());
+//    }
+
+    public DataResponse addStudent(StudentRequest studentRequest){
+        List<Classroom> classrooms = classroomRepository.findAllById(studentRequest.getClassroomIds());
+        Student student = studentMapper.studentRequestToStudent(studentRequest);  //map studentRequest to this student
+        classrooms.forEach(classroom -> {
+            StudentClassroom studentClassroom = new StudentClassroom();
+            studentClassroom.setStudent(student);
+            studentClassroom.setClassroom(classroom);
+            studentClassroomRepository.save(studentClassroom);
+        });
         studentRepository.save(student);
         return new DataResponse("Student Created ID: " + student.getId());
     }
+//    public DataResponse addStudent(StudentRequest studentRequest){
+//        Student student = new Student();
+//        StudentClassroom studentClassroom = new StudentClassroom();
+//        studentClassroom.setStudent(student);
+//        studentClassroom.setClassroom(classroomRepository.findById((long)1).orElse(null));
+//        List<StudentClassroom> classrooms;
+//        student.setName(studentRequest.getName());
+//        student.setMajor(studentRequest.getMajor());
+//        studentRepository.save(student);
+//        return new DataResponse("Student Created ID: " + student.getId());
+//    }
+
+
     public DataResponse addStudents(List<Student> students){
         studentRepository.saveAll(students);
         return new DataResponse("Students added");

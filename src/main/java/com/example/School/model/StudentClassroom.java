@@ -2,7 +2,6 @@ package com.example.School.model;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,11 +12,11 @@ public class StudentClassroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne()
-    @JoinColumn(name = "Student_Id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn()
     private Student student;
-    @ManyToOne()
-    @JoinColumn(name = "Classroom_Id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn()
     private Classroom classroom;
 
 }

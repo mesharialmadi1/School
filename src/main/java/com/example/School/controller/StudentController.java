@@ -1,5 +1,6 @@
 package com.example.School.controller;
 import com.example.School.model.Student;
+import com.example.School.model.StudentRequest;
 import com.example.School.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,10 +31,18 @@ public class StudentController {
     }
 //  Response entity contains the content of the HTTP response including: header, body and status code
 //  CTRL+lClick to go to the java class
+
+
+//    @PostMapping()
+//    public ResponseEntity<?> newStudent(@RequestBody Student student) {
+//        return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED); //201
+//    }
+
     @PostMapping()
-    public ResponseEntity<?> newStudent(@RequestBody Student student) {
-        return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED); //201
+    public ResponseEntity<?> newStudent(@RequestBody StudentRequest studentRequest) {
+        return new ResponseEntity<>(studentService.addStudent(studentRequest), HttpStatus.CREATED); //201
     }
+
 
     //only change path when doing something else
     @PostMapping("/addStudents")

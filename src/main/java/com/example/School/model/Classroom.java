@@ -1,4 +1,5 @@
 package com.example.School.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,15 @@ import java.io.Serializable;
 public class Classroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long roomNumber;
+    private long id;
+    private long roomNumber;
     private String building;
+
+    //FetchType.LAZY: fetch data only when needed
+    //FetchType.EAGER: fetch all data at once. Not efficient?
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn()
+    @JsonIgnore
     private Student student;
 
 }

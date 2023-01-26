@@ -1,5 +1,6 @@
 package com.example.School.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "student")
-@Table(name = "student")
+//@Table(name = "student")
 public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +21,7 @@ public class Student implements Serializable {
     private String name;
 //    @Column(name = "major", nullable = false)
     private String major;
-
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "student_id")
-    private List<StudentClassroom> classrooms = new ArrayList<>();
+    private List<StudentClassroom> studentClassrooms;
 
 }
