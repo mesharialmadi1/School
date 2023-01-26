@@ -20,6 +20,8 @@ public class StudentDto {
     private String name;
 //    @JsonProperty("major")
     private String major;
+
+    private String email;
     private List<Classroom> classrooms;
 
 }

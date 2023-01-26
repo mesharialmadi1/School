@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-//@Transactional is used to roll back if a RuntimeException and Error occurs
+//@Transactional used when working with  multiple repositories
+// to roll back if a RuntimeException or Error occurs
 @Transactional
 @Service
 public class StudentService{
