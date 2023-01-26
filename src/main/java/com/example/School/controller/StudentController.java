@@ -32,7 +32,6 @@ public class StudentController {
 //  Response entity contains the content of the HTTP response including: header, body and status code
 //  CTRL+lClick to go to the java class
 
-
 //    @PostMapping()
 //    public ResponseEntity<?> newStudent(@RequestBody Student student) {
 //        return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED); //201

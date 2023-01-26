@@ -22,6 +22,7 @@ public class Student implements Serializable {
 //    @Column(name = "major", nullable = false)
     private String major;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<StudentClassroom> studentClassrooms;
 
 }

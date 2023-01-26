@@ -1,11 +1,12 @@
-package com.example.School.service.Mappers;
+package com.example.School.Mappers;
 import com.example.School.model.Student;
 import com.example.School.model.StudentRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface StudentMapper {
 
     StudentMapper INSTANCE = Mappers.getMapper(StudentMapper.class);

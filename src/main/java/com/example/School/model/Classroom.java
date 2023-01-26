@@ -18,10 +18,5 @@ public class Classroom implements Serializable {
     private String building;
 
     //FetchType.LAZY: fetch data only when needed
-    //FetchType.EAGER: fetch all data at once. Not efficient?
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn()
-    @JsonIgnore
-    private Student student;
-
+    //FetchType.EAGER: fetch all data at once.
 }
