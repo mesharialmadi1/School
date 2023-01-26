@@ -1,8 +1,10 @@
 package com.example.School.service;
 import com.example.School.Exception.ApiRequestException;
 import com.example.School.Mappers.StudentMapper;
+import com.example.School.model.Classroom;
 import com.example.School.model.DataResponse;
 import com.example.School.model.Student;
+import com.example.School.repository.ClassroomRepository;
 import com.example.School.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,10 @@ import java.util.List;
 public class StudentService{
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    ClassroomRepository classroomRepository;
+
+
     public List<Student> getAllStudents(){
         if (studentRepository.count() < 1)
             throw new ApiRequestException("No students exist");
@@ -94,4 +100,16 @@ public class StudentService{
         studentRepository.deleteAll();
         return new DataResponse( "Deleted all students");
     }
+
+//    public DataResponse addToClassroom(Long studentId, Long classId) {
+//        Student existStudent = studentRepository.findById(studentId).orElse(null);
+//        Classroom newClassroom = classroomRepository.findById(classId).orElse(null);
+//        List<Classroom> existClassrooms = existStudent.getClassrooms();
+//        existClassrooms.add(newClassroom);
+//        existStudent.setClassrooms(existClassrooms);
+////        newClassroom.setStudent(existStudent);
+//        studentRepository.save(existStudent);
+////        classroomRepository.save(newClassroom);
+//        return new DataResponse("Added student " +existStudent.getId()+" to classroom " + newClassroom.getId());
+//    }
 }

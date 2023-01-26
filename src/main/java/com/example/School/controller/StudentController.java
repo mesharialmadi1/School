@@ -69,6 +69,12 @@ public class StudentController {
         return new ResponseEntity<>(studentService.countStudents(), HttpStatus.OK); //200
     }
 
+//    @PutMapping("/{student_id}/{class_id}")
+//    public ResponseEntity<?> addStudentToClassroom(@PathVariable Long student_id,
+//                                                   @PathVariable Long class_id) {
+//        return new ResponseEntity<>(studentService.addToClassroom(student_id,class_id),HttpStatus.OK);
+//    }
+
 }
 
 
