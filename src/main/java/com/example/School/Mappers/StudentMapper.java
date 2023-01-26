@@ -6,6 +6,6 @@ import java.util.List;
 @Mapper
 public interface StudentMapper {
     StudentDto studentToStudentDto(Student student);
-    List<StudentDto> studentsToStudentsDto(List<Student> students);
-    Student toStudent(StudentDto student);
+//    List<StudentDto> studentsToStudentsDto(List<Student> students);
+//    Student toStudent(StudentDto student);
 }

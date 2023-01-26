@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "student")
+@Table(name = "student")
 public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,7 @@ public class Student implements Serializable {
     private String major;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<StudentClassroom> classrooms;
+    @JoinColumn(name = "student_id")
+    private List<StudentClassroom> classrooms = new ArrayList<>();
 
 }
