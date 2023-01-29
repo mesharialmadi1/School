@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 //  only endpoints and HTTP status
 
@@ -37,6 +39,7 @@ public class StudentController {
 //        return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED); //201
 //    }
 
+//    use @Valid to force spring to validate
     @PostMapping()
     public ResponseEntity<?> newStudent(@RequestBody StudentRequest studentRequest) {
         return new ResponseEntity<>(studentService.addStudent(studentRequest), HttpStatus.CREATED); //201
