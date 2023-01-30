@@ -1,7 +1,6 @@
 package com.example.School.controller;
 
 import com.example.School.model.Classroom;
-import com.example.School.model.Student;
 import com.example.School.service.ClassroomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

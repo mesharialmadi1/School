@@ -1,6 +1,7 @@
 package com.example.School.Mapstruct;
 
 import com.example.School.model.Classroom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class StudentDto {
 
 //    @JsonProperty("id")
+    @JsonIgnore
     private Long Id;
 
 //    @JsonProperty("name")
@@ -22,6 +24,7 @@ public class StudentDto {
     private String major;
 
     private String email;
+    @JsonIgnore
     private List<Classroom> classrooms;
 
 }

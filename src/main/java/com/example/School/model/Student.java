@@ -20,21 +20,21 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Max(value = 5,message = "Max number of students")
 //    @Min(value = 10,message = "Min number of students")
-    @Range(min = 0, max = 1000)
+//    @Range(min = 0, max = 1000)
 //    @Positive
     private Long id;
-    @NotNull
-    @NotBlank
-    @IsAlphabetic() //custom validator
+//    @NotNull
+//    @NotBlank
+//    @IsAlphabetic() //custom validator
     private String name;
 
-    @NotNull
-    @NotBlank
+//    @NotNull
+//    @NotBlank
     private String major;
-    @Email(message = "Does not match email format")
-    @Pattern(message = "Does not match email pattern", regexp = "^\\w+@\\w+\\.\\w+$", flags = Pattern.Flag.CASE_INSENSITIVE)
-    @NotNull(message = "null email")
-    @NotBlank
+//    @Email(message = "Does not match email format")
+//    @Pattern(message = "Does not match email pattern", regexp = "^\\w+@\\w+\\.\\w+$", flags = Pattern.Flag.CASE_INSENSITIVE)
+//    @NotNull(message = "null email")
+//    @NotBlank
     private String email;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

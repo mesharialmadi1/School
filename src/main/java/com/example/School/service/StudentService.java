@@ -1,6 +1,7 @@
 package com.example.School.service;
 import com.example.School.Exception.ApiRequestException;
 import com.example.School.Mappers.StudentMapper;
+import com.example.School.Mapstruct.StudentDto;
 import com.example.School.model.*;
 import com.example.School.repository.ClassroomRepository;
 import com.example.School.repository.StudentClassroomRepository;
@@ -24,10 +25,13 @@ public class StudentService{
     @Autowired
     StudentClassroomRepository studentClassroomRepository;
 
-    public List<Student> getAllStudents(){
-        if (studentRepository.count() < 1)
-            throw new ApiRequestException("No students exist");
-        return studentRepository.findAll();
+    public List<StudentDto> getAllStudents(){
+        List<Student> students = studentRepository.findAll();
+        if (!students.isEmpty()) {
+            return studentMapper.studentsToStudentsDto(students);
+        }
+        throw new ApiRequestException("No students exist");
+
     }
 //    public DataResponse addStudent(Student student){
 //        studentRepository.save(student);
@@ -72,7 +76,7 @@ public class StudentService{
         throw new ApiRequestException("Student with id " + id + " does not exist");
     }
 
-    public DataResponse updateStudent(Long id, Student student) {
+    public DataResponse updateStudent(Long id, StudentRequest student) {
         Student existStudent = studentRepository.findById(id).orElse(null);
         if(existStudent != null) {
             //TODO se
@@ -100,7 +104,7 @@ public class StudentService{
         return new DataResponse("Student count: " + studentRepository.count());
     }
 
-    public DataResponse patchStudent(Long id, Student student) {
+    public DataResponse patchStudent(Long id, StudentRequest student) {
         Student existStudent = studentRepository.findById(id).orElse(null);
         String message = "";
 //      error 500 if NULL

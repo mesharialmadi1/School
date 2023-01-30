@@ -23,7 +23,6 @@ public class ClassroomService {
             return classroom;
         throw new ApiRequestException("classroom with id " + id + " does not exist");
     }
-
     public DataResponse addClass(Classroom classroom){
         classroomRepository.save(classroom);
         return new DataResponse("Added");

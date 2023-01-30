@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.7</version>
+		<version>2.7.7</version> <!-- spring framework dependencies will use this version -->
 		<relativePath/> <!-- lookup parent from repository-->
 	</parent>
 	<groupId>com.example</groupId>
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.5</version>
+			<version>2.7.5</version> <!-- JPA did not use the version from the parent so we had to set it manually-->
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>

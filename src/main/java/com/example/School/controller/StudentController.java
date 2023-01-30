@@ -41,14 +41,14 @@ public class StudentController {
 
 //    use @Valid to force spring to validate
     @PostMapping()
-    public ResponseEntity<?> newStudent(@RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<?> newStudent(@Valid @RequestBody StudentRequest studentRequest) {
         return new ResponseEntity<>(studentService.addStudent(studentRequest), HttpStatus.CREATED); //201
     }
 
 
     //only change path when doing something else
     @PostMapping("/addStudents")
-    public ResponseEntity<?> newStudents(@RequestBody List<Student> students) {
+    public ResponseEntity<?> newStudents(@RequestBody List<Student> students) { //add studentRequest
         return new ResponseEntity<>(studentService.addStudents(students),HttpStatus.CREATED); //201
     }
     @GetMapping("/{id}")//git branch test
@@ -58,11 +58,11 @@ public class StudentController {
 
 //  PathVariable(name = "id") if variable names are different
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable(name = "id") Long id2, @RequestBody Student s) {
+    public ResponseEntity<?> updateStudent(@PathVariable(name = "id") Long id2, @RequestBody StudentRequest s) {
         return new ResponseEntity<>(studentService.updateStudent(id2,s), HttpStatus.OK);
      }
     @PatchMapping("/{id}")
-    public ResponseEntity<?> patchStudent(@PathVariable Long id, @RequestBody Student s) {
+    public ResponseEntity<?> patchStudent(@PathVariable Long id, @RequestBody StudentRequest s) {
         return new ResponseEntity<>(studentService.patchStudent(id,s), HttpStatus.OK);
     }
 
