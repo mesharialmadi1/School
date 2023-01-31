@@ -12,7 +12,6 @@ public class Classroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
     private long roomNumber;
     @NotNull
     private String building;
